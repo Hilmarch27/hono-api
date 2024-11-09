@@ -42,7 +42,11 @@ userController.post('/api/users/login', async (c) => {
   return c.json(
     {
       message: 'Login successfully!',
-      data: response.email
+      data: {
+        email: response.email,
+        role: response.role,
+        name: response.name
+      }
     },
     200
   )
