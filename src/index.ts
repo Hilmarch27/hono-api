@@ -1,6 +1,5 @@
 import { Hono } from "hono";
 import { cors } from 'hono/cors'
-import { handle } from 'hono/vercel'
 import { HTTPException } from "hono/http-exception";
 import { ZodError } from "zod";
 import { userController } from "./controller/user.controller";
@@ -51,12 +50,5 @@ app.onError(async (err, c) => {
 });
 
 
-const handler = handle(app)
-
-export const GET = handler
-export const POST = handler
-export const PATCH = handler
-export const PUT = handler
-export const OPTIONS = handler
 
 export default app;
