@@ -1,6 +1,6 @@
 import { User } from '@prisma/client'
 
-export interface UserResponse {
+export type UserResponse = {
   id?: string
   name: string
   email: string
@@ -11,18 +11,18 @@ export interface UserResponse {
   refresh_token?: string
 }
 
-export interface CreateUserRequest {
+export type CreateUserRequest = {
   email: string
   name: string
   password: string
 }
 
-export interface LoginUserRequest {
+export type LoginUserRequest = {
   email: string
   password: string
 }
 
-export interface CookiesRequest {
+export type CookiesRequest = {
   cookies: {
     refreshToken?: string
     accessToken?: string

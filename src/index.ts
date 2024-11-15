@@ -4,6 +4,7 @@ import { HTTPException } from "hono/http-exception";
 import { ZodError } from "zod";
 import { userController } from "./controller/user.controller";
 import { decodedToken } from "./middleware/auth.middleware";
+import { routerController } from "./controller/router.controller";
 
 
 // Create the Hono app with proper typing
@@ -29,6 +30,7 @@ app.get("/", (c) => {
 app.use(decodedToken)
 
 app.route('/', userController)
+app.route('/', routerController)
 
 app.onError(async (err, c) => {
   if (err instanceof HTTPException) {
@@ -51,4 +53,7 @@ app.onError(async (err, c) => {
 
 
 
-export default app;
+export default {
+  port: 3007,
+  fetch: app.fetch
+} 

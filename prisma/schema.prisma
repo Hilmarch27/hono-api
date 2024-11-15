@@ -21,7 +21,34 @@ model User {
   role       String   @default("guest")
   created_at DateTime @default(now())
   updated_at DateTime @updatedAt
+  Router     Router[]
 
   @@index([id])
   @@map("users")
+}
+
+model Router {
+  id            String   @id @default(uuid())
+  type_of_uker  String
+  router_series String
+  name_uker     String
+  kanca         String
+  kanwil        String
+  ip_uker       String   @unique
+  sn_device     String
+  status        Status
+  information   String
+  created_at    DateTime @default(now())
+  updated_at    DateTime @updatedAt
+
+  userId String
+  user   User   @relation(fields: [userId], references: [id])
+
+  @@index([sn_device, status])
+  @@map("router")
+}
+
+enum Status {
+  AKTIF
+  TUTUP
 }
